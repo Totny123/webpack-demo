@@ -21,3 +21,4 @@ btn.onclick = function () {
   );
 };
 div.appendChild(btn);
+console.log(1)
