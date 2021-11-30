@@ -3,9 +3,9 @@ import png from "./assets/1.png";
 console.log(1223);
 console.log(png);
 const div = document.getElementById("app");
-div.innerHTML = `
-<img src="${png}" />
-`;
+// div.innerHTML = `
+// <img src="${png}" />
+// `;
 
 const btn = document.createElement("button");
 btn.innerHTML = "懒加载";
