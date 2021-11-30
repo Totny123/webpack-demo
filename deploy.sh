@@ -9,4 +9,4 @@ rm -rf dist &&
 git add . &&
 git commit -m "update" &&
 git push -u origin git-page &&
-git checkout - &&
+git checkout - 
