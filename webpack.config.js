@@ -1,15 +1,28 @@
-//导入node的path模块
-let path = require("path");
+const base = require("./webpack.config.base.js");
 
 module.exports = {
+  ...base,
   mode: "development",
-  //打包入口(通常是代码的入口，比如Vue的main.js)
-  entry: "./src/index.js",
-  //打包出口(即配置打包后文件夹的名字和打包后文件的名字)
-  output: {
-    //path模块读取路径
-    path: path.resolve(__dirname, "dist"),
-    //设置文件名
-    filename: "index.[contenthash].js",
+  //模块(通常有loader的规则在里面)
+  module: {
+    //规则
+    rules: [
+      ...base.module.rules,
+      {
+        //test属性值是后缀名。使用正则表达式匹配后缀名。
+        test: /\.css$/i,
+        //从右往左执行。先执行css-loader。再执行style-loader。
+        //css-loader会加载css文件，把文件内容读取成字符串。
+        //style-loader会将css文件的内容加到head标签里的style标签里面。
+        // use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  //source-map有利于追踪error和warning
+  devtool: "inline-source-map",
+  //告知dev server,从什么位置查找文件。
+  devServer: {
+    contentBase: "./dist",
   },
 };
